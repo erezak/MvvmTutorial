@@ -98,7 +98,7 @@
             <Button
                 Content="Login"
                 HorizontalAlignment="Stretch"
-                Click="Button_Click"
+                Command="{Binding LoginCommand}"
                 />
             <TextBlock
                 Text="&lt; Register &gt;"

@@ -27,6 +27,27 @@ namespace ChatWpf.ViewModels {
             }
         }
 
+        private String _Password;
+
+        public String Password {
+            get {
+                return _Password;
+            }
+            set {
+                SetProperty(ref _Password, value);
+            }
+        }
+
+        private String _LoginResult;
+
+        public String LoginResult {
+            get {
+                return _LoginResult;
+            }
+            set {
+                SetProperty(ref _LoginResult, value);
+            }
+        }
 
         private bool _IsLoginEnabled;
 
@@ -56,16 +77,24 @@ namespace ChatWpf.ViewModels {
             });
         }
 
-        private void _LoginAction() {
-            Username = "Command executed";
+        private async Task _LoginAction() {
+            if (string.IsNullOrWhiteSpace(_Username)) {
+                LoginResult = "Please enter a user name.";
+            } else if (string.IsNullOrWhiteSpace(_Password)) {
+                LoginResult = "Please enter a password.";
+            } else {
+                LoginResult = "Login executed";
+                await Task.Delay(2000);
+                LoginResult = "";
+            }
         }
 
         public class Command : ICommand {
 
             Func<bool> _CanExecute;
-            Action _ActionToExecute;
+            Func<Task> _ActionToExecute;
 
-            public Command(Action action, Func<bool> canExecute) {
+            public Command(Func<Task> action, Func<bool> canExecute) {
                 _CanExecute = canExecute;
                 _ActionToExecute = action;
             }

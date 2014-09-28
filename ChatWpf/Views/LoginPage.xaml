@@ -5,6 +5,7 @@
       xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:vm="clr-namespace:ChatWpf.ViewModels"
+      xmlns:common="clr-namespace:ChatWpf.Common"
       mc:Ignorable="d" 
       d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True, Type=vm:LoginViewModel}"
       DataContext="{DynamicResource LoginViewModel}"
@@ -61,14 +62,6 @@
                 Width="72"
                 />
         </Grid.ColumnDefinitions>
-        <CheckBox
-            Grid.Column="2"
-            HorizontalAlignment="Left"
-            Grid.Row="1"
-            VerticalAlignment="Top"
-            IsEnabled="False"
-            IsChecked="{Binding IsLoginEnabled}"
-            />
         <TextBlock
             VerticalAlignment="Center"
             Margin="18, 0, 0, 0"
@@ -89,6 +82,8 @@
             HorizontalAlignment="Stretch"
             Grid.Row="3"
             Grid.Column="1"
+            common:PasswordBoxAssistant.BindPassword="true"
+            common:PasswordBoxAssistant.BoundPassword="{Binding Path=Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
             />
         <StackPanel
             Orientation="Vertical"
@@ -119,6 +114,7 @@
             Foreground="#FFDE144B"
             Grid.Row="7"
             Grid.Column="1"
+            Text="{Binding LoginResult}"
             />
     </Grid>
 </Page>

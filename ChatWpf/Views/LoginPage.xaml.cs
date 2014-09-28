@@ -21,17 +21,5 @@ namespace ChatWpf.Views {
         public LoginPage() {
             InitializeComponent();
         }
-
-        private async void Button_Click(object sender, RoutedEventArgs e) {
-            if (string.IsNullOrWhiteSpace(txtUserName.Text)) {
-                lblLoginResult.Text = "Please enter a user name.";
-            } else if (string.IsNullOrWhiteSpace(txtPassword.Password)) {
-                lblLoginResult.Text = "Please enter a password.";
-            } else {
-                lblLoginResult.Text = "Login executed";
-                await Task.Delay(2000);
-                lblLoginResult.Text = "";
-            }
-        }
     }
 }

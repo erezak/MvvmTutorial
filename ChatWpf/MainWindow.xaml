@@ -2,7 +2,7 @@
     x:Class="ChatWpf.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    Title="MainWindow"
+    Title="Chat"
     ShowsNavigationUI="False"
     Source="/Views/LoginPage.xaml"
     >

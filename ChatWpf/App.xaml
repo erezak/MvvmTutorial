@@ -1,9 +1,14 @@
 ﻿<Application x:Class="ChatWpf.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:common="clr-namespace:ChatWpf.Common"
+             xmlns:ycommon="clr-namespace:YoctoMvvmWpf.Common;assembly=YoctoMvvmWpf"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
+            <common:Locator x:Key="Locator" />
+            <ycommon:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+            <ycommon:BooleanNegationToVisibilityConverter x:Key="BooleanNegationToVisibilityConverter" />
         </ResourceDictionary>
     </Application.Resources>
 </Application>

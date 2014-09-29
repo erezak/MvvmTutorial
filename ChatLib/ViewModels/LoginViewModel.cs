@@ -1,34 +1,34 @@
-﻿using ChatLib.Common;
+﻿using ChatLib.Azure;
+using ChatLib.CloudServices;
+using ChatLib.Common;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Input;
 using YoctoMvvm.Commands;
+using YoctoMvvm.Common;
+using YoctoMvvm.Courier;
+using YoctoMvvm.Platform;
 
 namespace ChatLib.ViewModels {
-    public class LoginViewModel : Bindable {
-        #region properties
-        private String _Username;
-
-        public String Username {
+    public class LoginViewModel : ViewModel {
+        #region private members
+        private IChatCloudService _ChatCloudService;
+        #endregion private members
+        #region observable properties
+        private string _Username;
+        public string Username {
             get {
                 return _Username;
             }
             set {
                 SetProperty(ref _Username, value);
-                //Also update the IsLoginEnabled flag, which affects the command CanExecute value
-                if (string.IsNullOrEmpty(value)) {
-                    IsLoginEnabled = false;
-                } else {
-                    IsLoginEnabled = true;
-                }
-                //Alert the UI systen that the command changed
-                _LoginCommand.RaiseCanExecuteChanged();
             }
         }
+        private string _Password;
 
-        private String _Password;
-
-        public String Password {
+        public string Password {
             get {
                 return _Password;
             }
@@ -37,9 +37,20 @@ namespace ChatLib.ViewModels {
             }
         }
 
-        private String _LoginResult;
+        private string _PasswordVerify;
 
-        public String LoginResult {
+        public string PasswordVerify {
+            get {
+                return _PasswordVerify;
+            }
+            set {
+                SetProperty(ref _PasswordVerify, value);
+            }
+        }
+
+        private string _LoginResult;
+
+        public string LoginResult {
             get {
                 return _LoginResult;
             }
@@ -48,71 +59,87 @@ namespace ChatLib.ViewModels {
             }
         }
 
-        private bool _IsLoginEnabled;
+        private bool _IsLoginResultVisible;
 
-        public bool IsLoginEnabled {
+        public bool IsLoginResultVisible {
             get {
-                return _IsLoginEnabled;
+                return _IsLoginResultVisible;
             }
             set {
-                SetProperty(ref _IsLoginEnabled, value);
+                SetProperty(ref _IsLoginResultVisible, value);
             }
         }
 
-        private AsyncYoctoCommand _LoginCommand;
-
-        public AsyncYoctoCommand LoginCommand {
+        #region commands
+        private AsyncYoctoCommand _DoLoginCommand;
+        public AsyncYoctoCommand DoLoginCommand {
             get {
-                return _LoginCommand;
+                return _DoLoginCommand;
             }
-            set {
-                SetProperty(ref _LoginCommand, value);
+            protected set {
+                SetProperty(ref _DoLoginCommand, value);
             }
         }
 
-        private AsyncYoctoCommand _RegisterCommand;
+        private YoctoCommand _DoRegisterCommand;
 
-        public AsyncYoctoCommand RegisterCommand {
+        public YoctoCommand DoRegisterCommand {
             get {
-                return _RegisterCommand;
+                return _DoRegisterCommand;
             }
             set {
-                SetProperty(ref _RegisterCommand, value);
+                SetProperty(ref _DoRegisterCommand, value);
             }
         }
-
-        #endregion properties
-
+        #endregion commands
+        #endregion observable properties
+        #region constructors
         public LoginViewModel() {
-            _IsLoginEnabled = false;
-            _LoginCommand = new AsyncYoctoCommand(_LoginAction, (a) => {
-                return _IsLoginEnabled;
-            });
-            _RegisterCommand = new AsyncYoctoCommand(_RegisterAction, (a) => {
-                return true;
-            });
-
+            _Username = "erez";
+            _Password = "****";
+            _LoginResult = "Testing login result";
+            _IsLoginResultVisible = true;
         }
-        #region actions for commands
+        [IocConstructor]
+        public LoginViewModel(IChatCloudService chatCloudService) {
+            _ChatCloudService = chatCloudService;
+            _DoLoginCommand = new AsyncYoctoCommand(DoLoginAction, (a) => true);
+            _DoRegisterCommand = new YoctoCommand(_DoRegisterAction, () => true);
+        }
 
-        private async Task _LoginAction() {
+        #endregion constructors
+        private async Task DoLoginAction() {
+            _DoLoginCommand.Disable(null);
             if (string.IsNullOrWhiteSpace(_Username)) {
                 LoginResult = "Please enter a user name.";
+                IsLoginResultVisible = true;
             } else if (string.IsNullOrWhiteSpace(_Password)) {
                 LoginResult = "Please enter a password.";
+                IsLoginResultVisible = true;
             } else {
-                LoginResult = "Login executed";
-                await Task.Delay(2000);
-                LoginResult = "";
+                IsLoginResultVisible = false;
+                var didLoginSucceed = await _ChatCloudService.DoLogin(_Username, _Password);
+                if (didLoginSucceed) {
+                    IsLoginResultVisible = true;
+                    LoginResult = "Login Succeeded";
+                    await Task.Delay(5000);
+                    LoginResult = "";
+                    IsLoginResultVisible = false;
+                } else {
+                    LoginResult = "Wrong credentials.";
+                    IsLoginResultVisible = true;
+                }
             }
+            _DoLoginCommand.Enable(null);
         }
 
-        private async Task _RegisterAction() {
+        private async void _DoRegisterAction() {
+            IsLoginResultVisible = true;
             LoginResult = "Register called";
             await Task.Delay(2000);
             LoginResult = "";
+            IsLoginResultVisible = false;
         }
 
-        #endregion actions for commands
     }
 }

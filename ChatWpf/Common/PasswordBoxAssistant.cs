@@ -1,28 +1,15 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 namespace ChatWpf.Common {
-    /// <summary>
-    /// WPF doesn't support binding to the password property of a password box.
-    /// This class creates an attachable dependency property for this purpose
-    /// </summary>
     public static class PasswordBoxAssistant {
         public static readonly DependencyProperty BoundPassword =
-            DependencyProperty.RegisterAttached("BoundPassword",
-                                    typeof(string),
-                                    typeof(PasswordBoxAssistant),
-                                    new PropertyMetadata(string.Empty, OnBoundPasswordChanged));
+            DependencyProperty.RegisterAttached("BoundPassword", typeof(string), typeof(PasswordBoxAssistant), new PropertyMetadata(string.Empty, OnBoundPasswordChanged));
 
-        public static readonly DependencyProperty BindPassword =
-            DependencyProperty.RegisterAttached("BindPassword",
-                                    typeof(bool),
-                                    typeof(PasswordBoxAssistant),
-                                    new PropertyMetadata(false, OnBindPasswordChanged));
+        public static readonly DependencyProperty BindPassword = DependencyProperty.RegisterAttached(
+            "BindPassword", typeof(bool), typeof(PasswordBoxAssistant), new PropertyMetadata(false, OnBindPasswordChanged));
 
-        private static readonly DependencyProperty UpdatingPassword = 
-            DependencyProperty.RegisterAttached("UpdatingPassword",
-                                    typeof(bool),
-                                    typeof(PasswordBoxAssistant),
-                                    new PropertyMetadata(false));
+        private static readonly DependencyProperty UpdatingPassword =
+            DependencyProperty.RegisterAttached("UpdatingPassword", typeof(bool), typeof(PasswordBoxAssistant), new PropertyMetadata(false));
 
         private static void OnBoundPasswordChanged(DependencyObject d, DependencyPropertyChangedEventArgs e) {
             PasswordBox box = d as PasswordBox;

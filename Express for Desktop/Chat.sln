@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatLibEx", "ChatLibEx\Chat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatWpfEx", "ChatWpfEx\ChatWpfEx.csproj", "{07AFB029-6716-4D17-90E5-5CAE00A84D91}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YoctoMvvm", "..\YoctoMvvm\Wpf\YoctoMvvm\YoctoMvvm.csproj", "{FD44BD1A-5608-4E51-B8F0-6E4C387E4DA7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YoctoMvvmWpf", "..\YoctoMvvm\Wpf\YoctoMvvm\YoctoMvvmWpf.csproj", "{FD44BD1A-5608-4E51-B8F0-6E4C387E4DA7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

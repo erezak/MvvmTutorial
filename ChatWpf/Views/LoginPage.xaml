@@ -3,19 +3,16 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:vm="clr-namespace:ChatLib.ViewModels;assembly=ChatLib"
       xmlns:common="clr-namespace:ChatWpf.Common"
-      mc:Ignorable="d"
-      DataContext="{DynamicResource LoginViewModel}"
       d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True, Type=vm:LoginViewModel}"
+      DataContext="{Binding LoginViewModel,Source={StaticResource Locator}}"
+      mc:Ignorable="d" 
       d:DesignHeight="500" d:DesignWidth="500"
-      Background="White"
-      Title="LoginPage"
-      >
+	Title="LoginPage">
     <Page.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
-        <vm:LoginViewModel x:Key="LoginViewModel" />
     </Page.Resources>
 
     <Grid
@@ -69,16 +66,14 @@
             Text="Login"
             FontSize="48"
             />
-        <TextBox
-            x:Name="txtUserName"
+        <TextBox 
             HorizontalAlignment="Stretch"
             TextWrapping="Wrap"
+            Text="{Binding Username, Mode=TwoWay}"
             Grid.Row="1"
             Grid.Column="1"
-            Text="{Binding Username}"
             />
         <PasswordBox
-            x:Name="txtPassword"
             HorizontalAlignment="Stretch"
             Grid.Row="3"
             Grid.Column="1"
@@ -93,35 +88,32 @@
             <Button
                 Content="Login"
                 HorizontalAlignment="Stretch"
-                Command="{Binding LoginCommand}"
+                Command="{Binding DoLoginCommand, Mode=OneWay}"
                 />
             <TextBlock
-                Text="&lt; Register &gt;"
+                Text="Register"
                 HorizontalAlignment="Center"
-                FontSize="16"
-                FontStretch="ExtraExpanded"
-                Cursor="Hand"
                 >
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="MouseLeftButtonUp">
                         <i:InvokeCommandAction
-                            Command="{Binding RegisterCommand}"
+                            Command="{Binding DoRegisterCommand}"
                             />
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
             </TextBlock>
         </StackPanel>
         <TextBlock
-            x:Name="lblLoginResult"
             TextWrapping="Wrap"
+            Text="{Binding LoginResult}"
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
+            Visibility="{Binding IsLoginResultVisible, Converter={StaticResource BooleanToVisibilityConverter}}"
             FontSize="14"
             FontWeight="Bold"
             Foreground="#FFDE144B"
             Grid.Row="7"
             Grid.Column="1"
-            Text="{Binding LoginResult}"
             />
     </Grid>
 </Page>

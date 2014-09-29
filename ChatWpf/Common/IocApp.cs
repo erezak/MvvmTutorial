@@ -1,5 +1,6 @@
 ﻿using ChatLib.Azure;
 using ChatLib.CloudServices;
+using ChatLib.DataServices;
 using ChatLib.ViewModels;
 using YoctoMvvm.Courier;
 using YoctoMvvm.Platform;
@@ -11,6 +12,7 @@ namespace ChatWpf.Common {
         protected override void RegisterAll() {
             Register<INavigationMappingProvider, NavigationMappingProvider>();
             Register<INavigationService, NavigationServiceWpf>();
+            Register<IMessagesDataService, InMemoryMessagesDataService>();
             Register<IDispatcher, Dispatcher>();
             if (IsInDesignMode) {
                 Register<IChatCloudService, MockChatCloudService>();
@@ -19,6 +21,12 @@ namespace ChatWpf.Common {
                 Register<IChatCloudService, AzureChatCloudService>();
             }
             Register<LoginViewModel>();
+            Register<RegisterViewModel>();
+            Register<FriendsListViewModel>();
+            Register<AddNewFriendViewModel>();
+            Register<MessagesListViewModel>();
+            Register<ICourier, Courier>();
+            Register<MessageFetcher>();
         }
         #region singleton
         private IocApp() {

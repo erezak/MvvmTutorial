@@ -83,8 +83,22 @@
     <Compile Include="Common\PasswordBoxAssistant.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Views\AddNewFriendPage.xaml.cs">
+      <DependentUpon>AddNewFriendPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AutoScrollToLastItemBehavior.cs" />
+    <Compile Include="Views\FriendsListPage.xaml.cs">
+      <DependentUpon>FriendsListPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MessagesListPage.xaml.cs">
+      <DependentUpon>MessagesListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MessagesTemplateSelector.cs" />
+    <Compile Include="Views\RegisterPage.xaml.cs">
+      <DependentUpon>RegisterPage.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -98,9 +112,25 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\AddNewFriendPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\FriendsListPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\LoginPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MessagesListPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\RegisterPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>

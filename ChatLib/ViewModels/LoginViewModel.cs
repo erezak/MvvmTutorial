@@ -15,6 +15,8 @@ namespace ChatLib.ViewModels {
     public class LoginViewModel : ViewModel {
         #region private members
         private IChatCloudService _ChatCloudService;
+        private INavigationService _NavigationService;
+        private ICourier _Courier;
         #endregion private members
         #region observable properties
         private string _Username;
@@ -101,10 +103,16 @@ namespace ChatLib.ViewModels {
             _IsLoginResultVisible = true;
         }
         [IocConstructor]
-        public LoginViewModel(IChatCloudService chatCloudService) {
+        public LoginViewModel(IChatCloudService chatCloudService, 
+                                        INavigationService navigationService,
+                                    ICourier courier,
+                                    MessageFetcher fetcher // to make sure it's created
+                                                            ) {
             _ChatCloudService = chatCloudService;
             _DoLoginCommand = new AsyncYoctoCommand(DoLoginAction, (a) => true);
             _DoRegisterCommand = new YoctoCommand(_DoRegisterAction, () => true);
+            _NavigationService = navigationService;
+            _Courier = courier;
         }
 
         #endregion constructors
@@ -120,11 +128,9 @@ namespace ChatLib.ViewModels {
                 IsLoginResultVisible = false;
                 var didLoginSucceed = await _ChatCloudService.DoLogin(_Username, _Password);
                 if (didLoginSucceed) {
-                    IsLoginResultVisible = true;
-                    LoginResult = "Login Succeeded";
-                    await Task.Delay(5000);
-                    LoginResult = "";
-                    IsLoginResultVisible = false;
+                    _NavigationService.NavigateReplaceAndKeepCurrent<FriendsListViewModel, LoginViewModel>();
+                    var parcel = new LoggedInParcel(this);
+                    _Courier.Publish<LoggedInParcel>(parcel);
                 } else {
                     LoginResult = "Wrong credentials.";
                     IsLoginResultVisible = true;
@@ -133,12 +139,8 @@ namespace ChatLib.ViewModels {
             _DoLoginCommand.Enable(null);
         }
 
-        private async void _DoRegisterAction() {
-            IsLoginResultVisible = true;
-            LoginResult = "Register called";
-            await Task.Delay(2000);
-            LoginResult = "";
-            IsLoginResultVisible = false;
+        private void _DoRegisterAction() {
+            _NavigationService.Navigate<RegisterViewModel>();
         }
 
     }

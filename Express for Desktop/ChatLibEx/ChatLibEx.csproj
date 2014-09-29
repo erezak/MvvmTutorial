@@ -60,23 +60,77 @@
     <Compile Include="..\..\ChatLib\Azure\AzureChatCloudService.cs">
       <Link>Azure\AzureChatCloudService.cs</Link>
     </Compile>
+    <Compile Include="..\..\ChatLib\Azure\Models\AzureFriend.cs">
+      <Link>Azure\Models\AzureFriend.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ChatLib\Azure\Models\AzureMessage.cs">
+      <Link>Azure\Models\AzureMessage.cs</Link>
+    </Compile>
     <Compile Include="..\..\ChatLib\Azure\Models\AzureUser.cs">
       <Link>Azure\Models\AzureUser.cs</Link>
     </Compile>
     <Compile Include="..\..\ChatLib\CloudServices\AuthenticationException.cs">
       <Link>CloudServices\AuthenticationException.cs</Link>
     </Compile>
+    <Compile Include="..\..\ChatLib\CloudServices\FriendAlreadyExistsException.cs">
+      <Link>CloudServices\FriendAlreadyExistsException.cs</Link>
+    </Compile>
     <Compile Include="..\..\ChatLib\CloudServices\IChatCloudService.cs">
       <Link>CloudServices\IChatCloudService.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ChatLib\CloudServices\MessageFetcher.cs">
+      <Link>CloudServices\MessageFetcher.cs</Link>
     </Compile>
     <Compile Include="..\..\ChatLib\CloudServices\MockChatCloudService.cs">
       <Link>CloudServices\MockChatCloudService.cs</Link>
     </Compile>
+    <Compile Include="..\..\ChatLib\CloudServices\RegistrationException.cs">
+      <Link>CloudServices\RegistrationException.cs</Link>
+    </Compile>
     <Compile Include="..\..\ChatLib\Common\Bindable.cs">
       <Link>Common\Bindable.cs</Link>
     </Compile>
+    <Compile Include="..\..\ChatLib\Common\LoggedInParcel.cs">
+      <Link>Common\LoggedInParcel.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ChatLib\Common\NewMessagesArrivedParcel.cs">
+      <Link>Common\NewMessagesArrivedParcel.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ChatLib\Common\RepeatingTaskFactory.cs">
+      <Link>Common\RepeatingTaskFactory.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ChatLib\Common\SelectedContactParcel.cs">
+      <Link>Common\SelectedContactParcel.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ChatLib\DataServices\IMessagesDataService.cs">
+      <Link>DataServices\IMessagesDataService.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ChatLib\DataServices\MessagesDataService.cs">
+      <Link>DataServices\MessagesDataService.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ChatLib\Models\Contact.cs">
+      <Link>Models\Contact.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ChatLib\Models\Friend.cs">
+      <Link>Models\Friend.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ChatLib\Models\Message.cs">
+      <Link>Models\Message.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ChatLib\ViewModels\AddNewFriendViewModel.cs">
+      <Link>ViewModels\AddNewFriendViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ChatLib\ViewModels\FriendsListViewModel.cs">
+      <Link>ViewModels\FriendsListViewModel.cs</Link>
+    </Compile>
     <Compile Include="..\..\ChatLib\ViewModels\LoginViewModel.cs">
       <Link>ViewModels\LoginViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ChatLib\ViewModels\MessagesListViewModel.cs">
+      <Link>ViewModels\MessagesListViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ChatLib\ViewModels\RegisterViewModel.cs">
+      <Link>ViewModels\RegisterViewModel.cs</Link>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -90,9 +90,31 @@
       <Link>MainWindow.xaml.cs</Link>
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="..\..\ChatWpf\Views\AddNewFriendPage.xaml.cs">
+      <Link>Views\AddNewFriendPage.xaml.cs</Link>
+      <DependentUpon>AddNewFriendPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\ChatWpf\Views\AutoScrollToLastItemBehavior.cs">
+      <Link>Views\AutoScrollToLastItemBehavior.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ChatWpf\Views\FriendsListPage.xaml.cs">
+      <Link>Views\FriendsListPage.xaml.cs</Link>
+      <DependentUpon>FriendsListPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="..\..\ChatWpf\Views\LoginPage.xaml.cs">
       <Link>Views\LoginPage.xaml.cs</Link>
       <DependentUpon>LoginPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\ChatWpf\Views\MessagesListPage.xaml.cs">
+      <Link>Views\MessagesListPage.xaml.cs</Link>
+      <DependentUpon>MessagesListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\ChatWpf\Views\MessagesTemplateSelector.cs">
+      <Link>Views\MessagesTemplateSelector.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ChatWpf\Views\RegisterPage.xaml.cs">
+      <Link>Views\RegisterPage.xaml.cs</Link>
+      <DependentUpon>RegisterPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -142,8 +164,28 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="..\..\ChatWpf\Views\AddNewFriendPage.xaml">
+      <Link>Views\AddNewFriendPage.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\..\ChatWpf\Views\FriendsListPage.xaml">
+      <Link>Views\FriendsListPage.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="..\..\ChatWpf\Views\LoginPage.xaml">
       <Link>Views\LoginPage.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\..\ChatWpf\Views\MessagesListPage.xaml">
+      <Link>Views\MessagesListPage.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\..\ChatWpf\Views\RegisterPage.xaml">
+      <Link>Views\RegisterPage.xaml</Link>
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

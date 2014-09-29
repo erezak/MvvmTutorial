@@ -1,0 +1,314 @@
+﻿<Page
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:vm="clr-namespace:ChatLib.ViewModels;assembly=ChatLib"
+      xmlns:local="clr-namespace:ChatWpf.Views"
+      xmlns:common="clr-namespace:ChatWpf.Common"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+      x:Class="ChatWpf.Views.MessagesListPage" 
+      d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True, Type={x:Type vm:MessagesListViewModel}}"
+      DataContext="{Binding MessagesListViewModel, Source={StaticResource Locator}}"
+      mc:Ignorable="d" 
+      d:DesignHeight="500" d:DesignWidth="800"
+      Title="Friends"
+      >
+    <Page.Resources>
+        <DataTemplate
+            x:Key="IncomingTemplate"
+            >
+            <Grid
+                MinWidth="200"
+                >
+                <Grid.RowDefinitions>
+                    <RowDefinition
+                        Height="Auto"
+                        />
+                    <RowDefinition
+                        Height="12"
+                        />
+                </Grid.RowDefinitions>
+                <Polygon
+                    Margin="10,10,0,0"
+                    Points="0,0 20,10, 0,10"
+                    RenderTransformOrigin="0.5,0.5"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    >
+                    <Polygon.Fill>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FF4F79EA" Offset="0"/>
+                            <GradientStop Color="#FFDE726D" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Polygon.Fill>
+                    <Polygon.RenderTransform>
+                        <RotateTransform
+                            Angle="-160"
+                            />
+                    </Polygon.RenderTransform>
+                </Polygon>
+                <Grid
+                    >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition
+                            Width="*"
+                            />
+                        <ColumnDefinition
+                            Width="200"
+                            />
+                    </Grid.ColumnDefinitions>
+                    <Grid 
+                        Margin="27,0,0,0" 
+                        HorizontalAlignment="Left"
+                        >
+                        <Grid.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="AntiqueWhite" Offset="0"/>
+                                <GradientStop Color="LightBlue" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Grid.Background>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition
+                                Width="*"
+                                />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition
+                                Height="auto"
+                                />
+                            <RowDefinition
+                                Height="auto"
+                                />
+                        </Grid.RowDefinitions>
+                        <TextBlock
+                            Grid.Column="0"
+                            Grid.Row="0"
+                            FontSize="24"
+                            Text="{Binding Content}"
+                            HorizontalAlignment="Left"
+                            Margin="5,5,20,0"
+                            VerticalAlignment="Top"
+                            Foreground="black"
+                            TextWrapping="WrapWithOverflow"
+                            Width="400"
+                            />
+                        <TextBlock
+                            Grid.Column="0"
+                            Grid.Row="1"
+                            Text="{Binding DeliveryTime}"
+                            HorizontalAlignment="Left" 
+                            Margin="5,0,0,5"
+                            VerticalAlignment="Bottom"
+                            FontSize="14"
+                            Foreground="DarkBlue"
+                            />
+                    </Grid>
+                </Grid>
+            </Grid>
+        </DataTemplate>
+
+        <!-- Template for OUTGOING messages -->
+        <DataTemplate x:Key="OutgoinTemplate">
+            <Grid
+                MinWidth="200"
+                >
+                <Grid.RowDefinitions>
+                    <RowDefinition
+                        Height="Auto"
+                        />
+                    <RowDefinition
+                        Height="12"
+                        />
+                </Grid.RowDefinitions>
+                <Polygon
+                    Margin="10,10,0,0"
+                    Points="0,0 20,10, 0,10"
+                    RenderTransformOrigin="0.5,0.5"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Top"
+                    >
+                    <Polygon.Fill>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="Azure" Offset="0"/>
+                            <GradientStop Color="DarkGray" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Polygon.Fill>
+                    <Polygon.RenderTransform>
+                        <RotateTransform
+                            Angle="0"
+                            />
+                    </Polygon.RenderTransform>
+                </Polygon>
+                <Grid
+                    >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition
+                            Width="160"
+                            />
+                        <ColumnDefinition
+                            Width="*"
+                            />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid
+                        Grid.Column="1"
+                        Margin="27,0,20,0"
+                        HorizontalAlignment="Right"
+                        >
+                        <Grid.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="Azure" Offset="0"/>
+                                <GradientStop Color="Black" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Grid.Background>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition
+                                Width="*"
+                                />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition
+                                Height="auto"
+                                />
+                            <RowDefinition
+                                Height="auto"
+                                />
+                        </Grid.RowDefinitions>
+                        <TextBlock
+                            Grid.Column="0"
+                            Grid.Row="0"
+                            FontSize="22"
+                            Text="{Binding Content}"
+                            HorizontalAlignment="Left"
+                            TextWrapping="WrapWithOverflow"
+                            Width="400"
+                            Margin="5,5,20,0"
+                            VerticalAlignment="Top"
+                            Foreground="black"
+                            />
+                        <TextBlock
+                            Grid.Column="0"
+                            Grid.Row="1"
+                            FontSize="14"
+                            Text="{Binding DeliveryTime}"
+                            HorizontalAlignment="Left"
+                            Margin="5,0,0,5"
+                            VerticalAlignment="Bottom"
+                            Foreground="AliceBlue"
+                            />
+                    </Grid>
+                </Grid>
+            </Grid>
+        </DataTemplate>
+
+        <local:MessagesTemplateSelector
+            x:Key="MessageTemplateSelector"
+            EmptyTemplate="{x:Null}"
+            IncomingMessageTemplate="{StaticResource IncomingTemplate}"
+            OutgoingMessageCaptureTemplate="{StaticResource OutgoinTemplate}"
+            />
+    </Page.Resources>
+    <i:Interaction.Triggers>
+		<i:EventTrigger EventName="Loaded">
+			<i:InvokeCommandAction
+                Command="{Binding CollectMessagesCommand}"
+                />
+		</i:EventTrigger>
+	</i:Interaction.Triggers>
+    <Grid
+        >
+        <Grid.RowDefinitions>
+            <RowDefinition
+                Height="100"
+                />
+            <RowDefinition
+                Height="*"
+                />
+        </Grid.RowDefinitions>
+        <Grid
+                Grid.Row="1"
+                >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition
+                        />
+                <ColumnDefinition
+                        Width="Auto"
+                        />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition
+                    Height="Auto"
+                    />
+                <RowDefinition
+                        Height="*"
+                        />
+                <RowDefinition
+                        Height="80"
+                        />
+            </Grid.RowDefinitions>
+            <StackPanel
+                Grid.ColumnSpan="2"
+                Orientation="Horizontal"
+                HorizontalAlignment="Center"
+                x:Name="pageTitle" 
+                VerticalAlignment="Bottom" 
+                Margin="0,0,30,40"
+                >
+                <TextBlock
+                    FontSize="28"
+                    Text="Conversing with"
+                    Margin="0, 0, 12, 0"
+                    />
+                <TextBlock
+                    FontSize="28"
+                    Text="{Binding OtherPartyNickname}"
+                    Margin="0, 0, 12, 0"
+                    />
+                <TextBlock
+                    FontSize="28"
+                    Text="("
+                    Margin="0, 0, 6, 0"
+                    />
+                <TextBlock
+                    FontSize="28"
+                    Text="{Binding OtherPartyUsername}"
+                    Margin="0, 0, 6, 0"
+                    />
+                <TextBlock
+                    FontSize="28"
+                    Text=")"
+                    />
+            </StackPanel>
+            <ListView
+                Grid.Row="1"
+                HorizontalAlignment="Center"
+                ItemsSource="{Binding Messages}"
+                ItemTemplateSelector="{StaticResource MessageTemplateSelector}"
+                MinWidth="500"
+                Grid.ColumnSpan="2"
+                Margin="0, 0, 0, 18"
+                >
+                <i:Interaction.Behaviors>
+                    <local:AutoScrollToLastItemBehavior
+                        />
+                </i:Interaction.Behaviors>
+            </ListView>
+            <TextBox
+                    Text="{Binding OutgoingMessage, Mode=TwoWay}"
+                    Margin="18, 0, 18, 0"
+                    FontSize="26"
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    />
+            <Button
+                    Content="Send"
+                    Grid.Row="2"
+                    FontSize="28"
+                    Command="{Binding SendMessageCommand}"
+                    Grid.Column="1"
+                    />
+        </Grid>
+
+    </Grid>
+</Page>

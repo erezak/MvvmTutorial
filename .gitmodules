@@ -1,0 +1,3 @@
+[submodule "YoctoMvvm"]
+	path = YoctoMvvm
+	url = https://github.com/erezak/YoctoMvvm.git

@@ -35,6 +35,10 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .NET Framework is automatically included -->
+    <ProjectReference Include="..\YoctoMvvm\Portable\YoctoMvvm\YoctoMvvm.csproj">
+      <Project>{ead253dd-61a4-453c-8dc9-bcbeeb2cccc5}</Project>
+      <Name>YoctoMvvm</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\Bindable.cs" />

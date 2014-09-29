@@ -2,6 +2,7 @@
 using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using YoctoMvvm.Commands;
 
 namespace ChatLib.ViewModels {
     public class LoginViewModel : Bindable {
@@ -58,9 +59,9 @@ namespace ChatLib.ViewModels {
             }
         }
 
-        private Command _LoginCommand;
+        private AsyncYoctoCommand _LoginCommand;
 
-        public Command LoginCommand {
+        public AsyncYoctoCommand LoginCommand {
             get {
                 return _LoginCommand;
             }
@@ -69,9 +70,9 @@ namespace ChatLib.ViewModels {
             }
         }
 
-        private Command _RegisterCommand;
+        private AsyncYoctoCommand _RegisterCommand;
 
-        public Command RegisterCommand {
+        public AsyncYoctoCommand RegisterCommand {
             get {
                 return _RegisterCommand;
             }
@@ -84,10 +85,10 @@ namespace ChatLib.ViewModels {
 
         public LoginViewModel() {
             _IsLoginEnabled = false;
-            _LoginCommand = new Command(_LoginAction, () => {
+            _LoginCommand = new AsyncYoctoCommand(_LoginAction, (a) => {
                 return _IsLoginEnabled;
             });
-            _RegisterCommand = new Command(_RegisterAction, () => {
+            _RegisterCommand = new AsyncYoctoCommand(_RegisterAction, (a) => {
                 return true;
             });
 
@@ -113,33 +114,5 @@ namespace ChatLib.ViewModels {
         }
 
         #endregion actions for commands
-        public class Command : ICommand {
-
-            Func<bool> _CanExecute;
-            Func<Task> _ActionToExecute;
-
-            public Command(Func<Task> action, Func<bool> canExecute) {
-                _CanExecute = canExecute;
-                _ActionToExecute = action;
-            }
-            public bool CanExecute(object parameter) {
-                return _CanExecute();
-            }
-
-            public event EventHandler CanExecuteChanged;
-
-            public void RaiseCanExecuteChanged() {
-                if (CanExecuteChanged != null) {
-                    CanExecuteChanged(this, null);
-                }
-            }
-
-            public void Execute(object parameter) {
-                if (_CanExecute()) {
-                    _ActionToExecute();
-                }
-            }
-
-        }
     }
 }

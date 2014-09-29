@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace YoctoMvvm.Common {
+namespace ChatLib.Common {
     /// <summary>
     /// Standard implementation of INotifyPropertyChanged
     /// </summary>

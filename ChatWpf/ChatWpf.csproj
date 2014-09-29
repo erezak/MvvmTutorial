@@ -60,11 +60,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Common\Bindable.cs" />
     <Compile Include="Common\PasswordBoxAssistant.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="Views\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
@@ -111,6 +109,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ChatLib\ChatLib.csproj">
+      <Project>{ed91d8a7-4aaa-48d6-8a5d-480ece18e182}</Project>
+      <Name>ChatLib</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

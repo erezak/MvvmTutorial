@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using ChatLib.Common;
+using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using YoctoMvvm.Common;
 
-namespace ChatWpf.ViewModels {
-    class LoginViewModel : Bindable {
+namespace ChatLib.ViewModels {
+    public class LoginViewModel : Bindable {
         private String _Username;
 
         public String Username {

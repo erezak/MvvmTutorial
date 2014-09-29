@@ -102,6 +102,13 @@
                 FontStretch="ExtraExpanded"
                 Cursor="Hand"
                 >
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                        <i:InvokeCommandAction
+                            Command="{Binding RegisterCommand}"
+                            />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
             </TextBlock>
         </StackPanel>
         <TextBlock

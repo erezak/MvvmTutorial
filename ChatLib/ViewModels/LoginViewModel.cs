@@ -5,6 +5,7 @@ using System.Windows.Input;
 
 namespace ChatLib.ViewModels {
     public class LoginViewModel : Bindable {
+        #region properties
         private String _Username;
 
         public String Username {
@@ -67,12 +68,31 @@ namespace ChatLib.ViewModels {
                 SetProperty(ref _LoginCommand, value);
             }
         }
+
+        private Command _RegisterCommand;
+
+        public Command RegisterCommand {
+            get {
+                return _RegisterCommand;
+            }
+            set {
+                SetProperty(ref _RegisterCommand, value);
+            }
+        }
+
+        #endregion properties
+
         public LoginViewModel() {
             _IsLoginEnabled = false;
             _LoginCommand = new Command(_LoginAction, () => {
                 return _IsLoginEnabled;
             });
+            _RegisterCommand = new Command(_RegisterAction, () => {
+                return true;
+            });
+
         }
+        #region actions for commands
 
         private async Task _LoginAction() {
             if (string.IsNullOrWhiteSpace(_Username)) {
@@ -86,6 +106,13 @@ namespace ChatLib.ViewModels {
             }
         }
 
+        private async Task _RegisterAction() {
+            LoginResult = "Register called";
+            await Task.Delay(2000);
+            LoginResult = "";
+        }
+
+        #endregion actions for commands
         public class Command : ICommand {
 
             Func<bool> _CanExecute;
